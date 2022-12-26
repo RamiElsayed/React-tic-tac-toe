@@ -1,4 +1,4 @@
-import {Board} from "./components/Board/index"
+import {Board} from "./components/Board/index.js"
 export const App = () => {
     return (
         <>
