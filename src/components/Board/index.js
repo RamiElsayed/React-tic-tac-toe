@@ -19,8 +19,17 @@ export const Board = () => {
         setXIsNext(!xIsNext);
     }
 
+    const winner = calculateWinner(squares);
+    let status;
+    if (winner){
+        status = "winner: " + winner;
+    } else{
+        status = "Next player: " + (xIsNext ? "X" : "O");
+    }
+
     return (
         <>
+            <div className={status}>{status}</div>
             <div className="board-row">
                 <Square values={squares[0]} onSquareClick={() => handleClick(0)}/>
                 <Square values={squares[1]} onSquareClick={() => handleClick(1)}/>
