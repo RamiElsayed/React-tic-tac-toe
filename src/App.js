@@ -1,8 +1,8 @@
-import {Board} from "./components/Board/index.js"
+import {Index} from "./components/Game/index.js";
 export const App = () => {
     return (
         <>
-            <Board />
+            <Index />
         </>
     );
 }
