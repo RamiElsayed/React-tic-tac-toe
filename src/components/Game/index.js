@@ -23,11 +23,14 @@ export const Game = () => {
         } else {
             description =  'Go to game start';
         }
-        return (
-            <li key={move}>
+        if(move === history.length - 1){
+            return "You are at move #" + move;
+        } else {
+            return <li key={move}>
                 <button onClick={() => jumpTo(move)}>{description}</button>
             </li>
-        )
+        }
+
     })
     return (
         <div className="game">
