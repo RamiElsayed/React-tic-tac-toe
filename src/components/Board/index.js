@@ -2,8 +2,9 @@ import {Square} from "../Square/index.js";
 
 export const Board = ({xIsNext, squares, onPlay}) => {
 
+    let winnerLine;
     const handleClick = (i) => {
-        if (squares[i] || calculateWinner(squares)){
+        if (squares[i] || calculateWinner(squares, winnerLine)){
             return;
         }
         const nextSquares = squares.slice();
@@ -15,7 +16,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
         onPlay(nextSquares)
     }
 
-    const winner = calculateWinner(squares);
+    const winner = calculateWinner(squares, winnerLine);
     let status;
     if (winner){
         status = "winner: " + winner;
@@ -27,7 +28,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
 
     for (let i = 0; i < rows.length; i++){
         for (let x = 0; x < squares.length; x++){
-            row.push(<Square value={squares[x]} onSquareClick={() => handleClick(x)}/>)
+            row.push(<Square value={squares[x]} onSquareClick={() => handleClick(x)} />)
             if (x === 2 || x === 5 || x === 8){
                 rows.push(<div className="board-row">{row}</div>);
                 row = [];
@@ -42,7 +43,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
         </>
     )
 };
-const calculateWinner = (squares) => {
+const calculateWinner = (squares, winnerLine) => {
     const lines =[
         [0, 1, 2],
         [3, 4, 5],
@@ -56,6 +57,7 @@ const calculateWinner = (squares) => {
     for(let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+            winnerLine = [a, b, c];
             return squares[a];
         }
     }
