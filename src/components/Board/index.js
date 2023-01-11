@@ -2,7 +2,6 @@ import {Square} from "../Square/index.js";
 
 export const Board = ({xIsNext, squares, onPlay}) => {
 
-    let winnerLine;
     const handleClick = (i) => {
         if (squares[i] || calculateWinner(squares)){
             return;
@@ -16,7 +15,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
         onPlay(nextSquares)
     }
 
-    const winner = calculateWinner(squares, winnerLine);
+    const winner = calculateWinner(squares);
     let status;
     if (winner){
         status = "winner: " + winner;
@@ -29,13 +28,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
 
     for (let i = 0; i < rows.length; i++){
         for (let x = 0; x < squares.length; x++){
-            if (winner){
-                if (x === winnerLine[0] || x === winnerLine[1] || x === winnerLine[2]){
-                     colour = "yellow"
-                }
-                colour = "white"
-            }
-            row.push(<Square value={squares[x]} onSquareClick={() => handleClick(x)} backgroundColor={colour}/>)
+            row.push(<Square value={squares[x]} onSquareClick={() => handleClick(x)} />)
             if (x === 2 || x === 5 || x === 8){
                 rows.push(<div className="board-row">{row}</div>);
                 row = [];
