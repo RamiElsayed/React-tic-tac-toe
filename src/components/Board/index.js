@@ -23,7 +23,6 @@ export const Board = ({xIsNext, squares, onPlay}) => {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
     let row = [];
-    let colour;
     let rows = Array(3).fill(null);
 
     for (let i = 0; i < rows.length; i++){
@@ -43,7 +42,7 @@ export const Board = ({xIsNext, squares, onPlay}) => {
         </>
     )
 };
-const calculateWinner = (squares, winnerLine) => {
+const calculateWinner = (squares) => {
     const lines =[
         [0, 1, 2],
         [3, 4, 5],
@@ -57,7 +56,6 @@ const calculateWinner = (squares, winnerLine) => {
     for(let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
-            winnerLine = lines[i];
             return squares[a];
         }
     }
