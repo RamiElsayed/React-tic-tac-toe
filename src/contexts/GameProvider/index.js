@@ -1,3 +1,11 @@
-import { createContext} from "react";
+import { createContext, useReducer} from "react";
 
-export const boardContext = createContext();
+export const GameContext = createContext();
+
+const reducer = (state, action) => {
+
+}
+
+export const GameProvider = ({children}) => {
+    const [state, dispatch] = useReducer(reducer)
+}
