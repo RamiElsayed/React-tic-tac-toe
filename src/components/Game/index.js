@@ -12,7 +12,6 @@ export const Game = () => {
         setHistory(nextHistory);
         setCurrentMove(nextHistory.length - 1);
     }
-
     const jumpTo = (nextMove) => {
         setCurrentMove(nextMove);
     }
@@ -31,8 +30,10 @@ export const Game = () => {
                 <button onClick={() => jumpTo(move)}>{description}</button>
             </li>
         }
-
     })
+    const winnerSquaresColour = () => {
+
+    }
     return (
         <div className="game">
             <div className="game-board">
