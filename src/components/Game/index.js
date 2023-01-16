@@ -24,7 +24,6 @@ export const Game = () => {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
 
-
     const moves = history.map((squares, move) => {
         let description;
         if (move > 0){

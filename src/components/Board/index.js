@@ -14,9 +14,7 @@ export const Board = ({xIsNext, squares, onPlay, winner}) => {
         onPlay(nextSquares)
     }
 
-
     let isWinner;
-
     const squaresColour = (x) =>{
         if (winner && (x === winner[0] || x === winner[1]|| x === winner[2])){
             isWinner = true;
