@@ -32,8 +32,7 @@ export const Board = ({xIsNext, squares, onPlay, winner}) => {
 
             row.push(<Square value={squares[x]} onSquareClick={() => handleClick(x)} isWinner={squaresColour(x)}/>)
             if (x === 2 || x === 5 || x === 8){
-                rows.push(<div className="board-row">{row}</div>);
-                rows.shift();
+                rows.unshift(<div className="board-row">{row}</div>);
                 row = [];
             }
         }
