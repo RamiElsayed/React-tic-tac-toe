@@ -16,6 +16,15 @@ export const Game = () => {
         setCurrentMove(nextMove);
     }
 
+    let status;
+    const winner = calculateWinner(currentSquares);
+    if (winner){
+        status = "winner: " + currentSquares[winner[0]];
+    } else{
+        status = "Next player: " + (xIsNext ? "X" : "O");
+    }
+
+
     const moves = history.map((squares, move) => {
         let description;
         if (move > 0){
@@ -34,11 +43,31 @@ export const Game = () => {
     return (
         <div className="game">
             <div className="game-board">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                <div className="status">{status}</div>
+                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} winner={winner}/>
             </div>
             <div className="game-info">
                 <ol>{moves}</ol>
             </div>
         </div>
     )
+}
+const calculateWinner = (squares) => {
+    const lines =[
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+    for(let i = 0; i < lines.length; i++) {
+        const [a, b, c] = lines[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+            return [a, b, c];
+        }
+    }
+    return null;
 }
